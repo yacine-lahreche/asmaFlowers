@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Story | Asma Flowers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-accent: #a66a6a;
+            --primary-accent-dark: #824f4f;
+            --secondary-green: #545454;
+            --text-main: #1e2022;
+            --text-muted: #434547;
+            --white: #ffffff;
+            --glass-white: rgba(255, 255, 255, 0.45);
+            --glass-border: rgba(255, 255, 255, 0.6);
+            --curve: cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-soft: 0 40px 100px -20px rgba(0, 0, 0, 0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: url('assets/bg.png') center/cover no-repeat fixed;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            color: var(--text-main);
+            overflow: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            z-index: 1;
+        }
+
+        .glass-card {
+            background: var(--glass-white);
+            backdrop-filter: blur(45px) saturate(140%);
+            -webkit-backdrop-filter: blur(45px) saturate(140%);
+            border-radius: 50px;
+            border: 1px solid var(--glass-border);
+            padding: 80px 100px;
+            margin: 0 auto;
+            position: relative;
+            box-shadow: var(--shadow-soft);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            /* overflow: hidden; */
+            /* width: 90vw; */
+            height: 85vh;
+            min-height: 700px;
+            transform: perspective(1000px);
+        }
+
+        /* Back Button */
+        .btn-back {
+            position: absolute;
+            top: 60px;
+            left: 80px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s var(--curve);
+            font-size: 0.95rem;
+            opacity: 0.7;
+        }
+
+        .btn-back::before {
+            content: '←';
+
+            transition: transform 0.3s var(--curve);
+        }
+
+        .btn-back:hover {
+            opacity: 1;
+        }
+
+        .btn-back:hover::before {
+            transform: translateX(-8px);
+        }
+        
+        /* .back-nav {
+            position: absolute;
+            top: 60px;
+            left: 80px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            transition: all 0.3s var(--curve);
+            z-index: 10;
+        }
+
+        .back-nav:hover {
+            opacity: 1;
+            transform: translateX(-5px);
+        } */
+
+        .content {
+            max-width: 600px;
+            z-index: 2;
+        }
+
+        .tagline {
+            color: var(--secondary-green);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 35px;
+            font-weight: 700;
+        }
+
+        .story-text {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            border-top: 1px solid var(--glass-border);
+            padding-top: 40px;
+        }
+
+        .feature-item h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .feature-item p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        /* Visuals */
+        .visuals {
+            position: absolute;
+            right: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 700px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .main-flower {
+            width: 100%;
+            filter: drop-shadow(0 30px 60px rgba(0,0,0,0.12));
+            mix-blend-mode: multiply;
+            animation: floatingFlower 12s ease-in-out infinite;
+        }
+
+        @keyframes floatingFlower {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+
+        @media (max-width: 1024px) {
+            .glass-card { padding: 60px; }
+            h1 { font-size: 3rem; }
+            .visuals { width: 400px; }
+            .features-list { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            body { overflow: auto; padding: 20px; }
+            .glass-card { height: auto; flex-direction: column; padding: 100px 40px 60px; text-align: center; }
+            .visuals { position: relative; right: 0; transform: none; width: 100%; height: 300px; }
+            .back-nav { top: 40px; left: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <main class="glass-card">
+            <a href="index.html" class="btn-back">Back to Home</a>
+
+            <section class="content">
+                <span class="tagline">Crafting Eternity</span>
+                <h1>Our Story Is <br> <span style="font-style: italic; color: var(--primary-accent-dark);">Hand-Folded.</span></h1>
+                <div class="story-text">
+                    <p>
+                        Asma Flowers was born from a simple desire: to capture the fleeting beauty of nature and freeze it in time. We specialize in the meticulous art of satin ribbon folding, creating flowers that never fade and memories that last a lifetime.
+                    </p>
+                    <p style="margin-top: 20px;">
+                        Every petal is hand-crafted with precision, using the finest silk-satin ribbons to ensure a luster and texture that rivals the softest blooms in the garden.
+                    </p>
+                </div>
+
+                <div class="features-list">
+                    <div class="feature-item">
+                        <h4>Artisan Craft</h4>
+                        <p>Hours of manual precision in every single flower bloom.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Infinite Silk</h4>
+                        <p>Premium satin materials that retain color and form forever.</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>Bespoke Art</h4>
+                        <p>Custom designs tailored to your unique interior aesthetic.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="visuals">
+                <img src="assets/hero.png" alt="Satin Rose Art" class="main-flower">
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const card = document.querySelector('.glass-card');
+            const flower = document.querySelector('.main-flower');
+            
+            document.addEventListener('mousemove', (e) => {
+                const x = (window.innerWidth / 2 - e.pageX) / 80;
+                const y = (window.innerHeight / 2 - e.pageY) / 80;
+                
+                card.style.transform = `perspective(1000px) rotateY(${x}deg) rotateX(${y}deg)`;
+                flower.style.transform = `translate(${-x * 3}px, ${-y * 3}px)`;
+            });
+
+            // Smooth entrance
+            const elements = [
+                document.querySelector('.tagline'),
+                document.querySelector('h1'),
+                document.querySelector('.story-text'),
+                document.querySelector('.features-list')
+            ];
+
+            elements.forEach((el, index) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = `all 0.8s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.1}s`;
+                
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, 100);
+            });
+        });
+    </script>
+</body>
+</html>
