@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Asma Flowers | Handcrafted Satin Ribbon Flowers</title>
     <meta name="description" content="Discover the art of eternal blooms. Premium, handcrafted satin ribbon flowers that bring timeless silken elegance to any space.">
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -172,8 +173,8 @@
         /* Refined Glass Card */
         .glass-card {
             background: var(--glass-white);
-            /* backdrop-filter: blur(45px) saturate(140%); */
-            -webkit-backdrop-filter: blur(45px) saturate(140%);
+            /* backdrop-filter: blur(5px) saturate(140%); */
+            -webkit-backdrop-filter: blur(5px) saturate(140%);
             border-radius: 50px;
             border: 1px solid var(--glass-border);
             padding: 80px 100px;
@@ -347,7 +348,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 1;
+            z-index: 100;
             pointer-events: none;
         }
 
@@ -483,7 +484,7 @@
                     <span class="badge-title">Eternal Edition</span>
                     <span class="badge-type">Infinity Satin</span>
                 </div>
-                <img src="assets/satin_rose.png" alt="Handcrafted Satin Ribbon Rose" class="main-flower">
+                <img src="assets/hero.png" alt="Handcrafted Satin Ribbon Rose" class="main-flower">
             </section>
 
             <!-- Textures -->
@@ -492,25 +493,25 @@
     <div id="contactModal" class="modal-overlay">
         <div class="modal-card">
             <div class="social-grid">
-                <a href="#" class="social-item">
+                <a href="#" target="_blank" id="link-instagram" class="social-item">
                     <div class="icon-box">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                     </div>
                     <span>INSTAGRAM</span>
                 </a>
-                <a href="#" class="social-item">
+                <a href="#" target="_blank" id="link-facebook" class="social-item">
                     <div class="icon-box">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
                     </div>
                     <span>FACEBOOK</span>
                 </a>
-                <a href="#" class="social-item">
+                <a href="#" target="_blank" id="link-tiktok" class="social-item">
                     <div class="icon-box">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
                     </div>
                     <span>TIKTOK</span>
                 </a>
-                <a href="#" class="social-item">
+                <a href="#" target="_blank" id="link-whatsapp" class="social-item">
                     <div class="icon-box">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
                     </div>
@@ -652,6 +653,22 @@
             // Modal Controls
             openBtn.addEventListener('click', (e) => {
                 e.preventDefault();
+                
+                // Update Social Links from LocalStorage
+                const socials = JSON.parse(localStorage.getItem('asmaFlowersSocials')) || {
+                    instagram: '#', facebook: '#', tiktok: '#', whatsapp: '213696004501'
+                };
+
+                const igLink = document.getElementById('link-instagram');
+                const fbLink = document.getElementById('link-facebook');
+                const ttLink = document.getElementById('link-tiktok');
+                const waLink = document.getElementById('link-whatsapp');
+
+                if (igLink) igLink.href = socials.instagram === 'Not set' ? '#' : socials.instagram;
+                if (fbLink) fbLink.href = socials.facebook === 'Not set' ? '#' : socials.facebook;
+                if (ttLink) ttLink.href = socials.tiktok === 'Not set' ? '#' : socials.tiktok;
+                if (waLink) waLink.href = socials.whatsapp === 'Not set' ? '#' : `https://wa.me/${socials.whatsapp}`;
+
                 modal.classList.add('active');
             });
 

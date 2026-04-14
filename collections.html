@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Collections | Asma Flowers</title>
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
@@ -91,34 +92,6 @@
         .btn-back:hover::before {
             transform: translateX(-8px);
         }
-
-        /* .back-link {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: var(--glass-white);
-            padding: 20px;
-            width: 70px;
-            height: 70px;
-            border: 1px solid var(--glass-border);
-            border-radius: 50px;
-            text-decoration: none;
-            color: var(--text-main);
-            font-weight: 500; 
-            font-size: 1.5rem;
-            opacity: 0.7;
-            transition: opacity 0.3s var(--curve);
-            position: absolute;
-            left: 0;
-        }
-
-        .back-link:hover { opacity: 1; }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            font-weight: 700;
-        } */
 
         /* Glass Container (Mirroring index.html glass-card) */
         .glass-container {
@@ -278,9 +251,190 @@
             .glass-container { padding: 40px 20px; }
             body { padding: 20px; }
         }
+        /* Quantity Modal Styles */
+        .qty-modal {
+            max-width: 900px;
+            width: 95%;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            background: var(--glass-border);
+            backdrop-filter: blur(45px) saturate(140%);
+            -webkit-backdrop-filter: blur(45px) saturate(140%);
+            border-radius: 50px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow-soft);
+            position: relative;
+        }
+
+        .qty-close {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            width: 40px;
+            height: 40px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.4);
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .qty-close:hover {
+            background: white;
+            transform: rotate(90deg);
+        }
+
+        .qty-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 500px;
+        }
+
+        .qty-left {
+            background: rgba(0,0,0,0.03);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .qty-left img {
+            max-width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+        }
+
+        .qty-right {
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .qty-right h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .qty-control-section, .qty-price-section {
+            margin-bottom: 30px;
+        }
+
+        .qty-control-section label, .qty-price-section label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            opacity: 0.5;
+            margin-bottom: 15px;
+        }
+
+        .qty-counter {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: white;
+            padding: 8px;
+            border-radius: 40px;
+            width: fit-content;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .qty-counter button {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 1px solid #eee;
+            background: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qty-counter button:hover {
+            background: #f9f9f9;
+            border-color: var(--primary-accent);
+        }
+
+        .qty-counter span {
+            font-size: 1.2rem;
+            font-weight: 600;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .qty-total-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-accent-dark);
+            font-family: 'Playfair Display', serif;
+        }
+
+        @media (max-width: 900px) {
+            .qty-container { grid-template-columns: 1fr; }
+            .qty-modal { max-height: 90vh; overflow-y: auto; }
+            .qty-right { padding: 30px; }
+            .qty-left { min-height: 300px; }
+        }
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--glass-white);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 15px 30px;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 10000;
+            transition: all 0.5s var(--curve);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .toast.active {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        .toast-icon {
+            width: 24px;
+            height: 24px;
+            background: #25d366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
     </style>
 </head>
 <body>
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <div class="toast-icon">✓</div>
+        <span id="toastMsg">Added to Bag</span>
+    </div>
+
     <header class="header">
         <a href="index.html" class="btn-back">Back to Site</a>
         <div class="logo">Collections</div>
@@ -321,36 +475,80 @@
         </div>
     </div>
 
-    <!-- Checkout Form Modal -->
+    <!-- Quantity Modal -->
+    <div id="qtyModal" class="modal-overlay" style="z-index: 1000;">
+        <div class="modal-card qty-modal">
+            <button id="closeQty" class="qty-close">&times;</button>
+            <div class="qty-container">
+                <div class="qty-left">
+                    <img id="qtyProdImg" src="" alt="">
+                </div>
+                <div class="qty-right">
+                    <span id="qtyProdTag" class="product-tag" style="position: static; display: inline-block; margin-bottom: 10px; width: fit-content;"></span>
+                    <h2 id="qtyProdName"></h2>
+                    <p id="qtyProdDesc" style="font-size: 0.9rem; opacity: 0.7; margin-bottom: 30px;"></p>
+                    
+                    <div class="qty-control-section">
+                        <label>QUANTITY</label>
+                        <div class="qty-counter">
+                            <button id="qtyMinus">-</button>
+                            <span id="qtyValue">1</span>
+                            <button id="qtyPlus">+</button>
+                        </div>
+                    </div>
+
+                    <div class="qty-price-section">
+                        <label>ESTIMATED TOTAL</label>
+                        <div id="qtyTotal" class="qty-total-price">0 DA</div>
+                    </div>
+
+                    <button id="confirmAddBtn" class="btn-confirm" style="margin-top: auto; border: none; width: 100%;">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="checkoutModal" class="modal-overlay">
         <div class="modal-card checkout-modal">
-            <h2>Order Details</h2>
-            <form id="orderForm" class="order-form">
-                <div class="form-group">
-                    <label>Full Name</label>
-                    <input type="text" id="custName" required placeholder="Ex: Yacine Ben">
-                </div>
-                <div class="form-group">
-                    <label>Phone Number</label>
-                    <input type="tel" id="custPhone" required placeholder="06XXXXXXXX">
-                </div>
-                <div class="form-row">
+            <!-- Order Form -->
+            <div id="orderFormContainer">
+                <h2>Order Details</h2>
+                <form id="orderForm" class="order-form">
                     <div class="form-group">
-                        <label>Wilaya</label>
-                        <input type="text" id="custWilaya" required placeholder="Ex: Algiers">
+                        <label>Full Name</label>
+                        <input type="text" id="custName" required placeholder="Ex: Yacine Ben">
                     </div>
                     <div class="form-group">
-                        <label>Dayra</label>
-                        <input type="text" id="custDayra" required placeholder="Ex: Kouba">
+                        <label>Phone Number</label>
+                        <input type="tel" id="custPhone" required placeholder="06XXXXXXXX">
                     </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Wilaya</label>
+                            <input type="text" id="custWilaya" required placeholder="Ex: Algiers">
+                        </div>
+                        <div class="form-group">
+                            <label>Dayra</label>
+                            <input type="text" id="custDayra" required placeholder="Ex: Kouba">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Home Address</label>
+                        <textarea id="custAddr" rows="2" required placeholder="Rue, N°, Building..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-confirm">Confirm & Order via WhatsApp</button>
+                    <button type="button" id="backToCart" class="close-btn">Cancel</button>
+                </form>
+            </div>
+
+            <!-- Success Message (initially hidden) -->
+            <div id="orderSuccess" style="display: none; text-align: center; padding: 40px 0;">
+                <div style="background: rgba(37, 211, 102, 0.1); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 30px; color: #25d366;">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                 </div>
-                <div class="form-group">
-                    <label>Home Address</label>
-                    <textarea id="custAddr" rows="2" required placeholder="Rue, N°, Building..."></textarea>
-                </div>
-                <button type="submit" class="btn-confirm">Confirm & Order via WhatsApp</button>
-                <button type="button" id="backToCart" class="close-btn">Cancel</button>
-            </form>
+                <h2 style="margin-bottom: 20px;">Your Order was Sent!</h2>
+                <p style="opacity: 0.7; line-height: 1.6; margin-bottom: 40px;">We've received your request. <br> Our artisans will contact you shortly to confirm details.</p>
+                <button onclick="closeSuccessModal()" class="btn-confirm" style="background: var(--text-main);">Back to Sanctuary</button>
+            </div>
         </div>
     </div>
 
@@ -540,6 +738,7 @@
         .cart-item-remove {
             background: none;
             border: none;
+            margin-right: 10px;
             color: #ff4757;
             cursor: pointer;
             font-size: 0.8rem;
@@ -590,18 +789,29 @@
     </style>
 
     <script>
-        // const initialProducts = [
-        //     { id: 1, name: 'Satin Classique', price: '4500 DA', img: 'assets/flower.png', tag: 'Most Loved', desc: 'Meticulously folded silken petals in our signature deep rose hue. A masterpiece of symmetry and softness.' },
-        //     { id: 2, name: 'Eternal Champagne', price: '5200 DA', img: 'assets/satin_rose.png', tag: 'Boutique', desc: 'Luxurious champagne-tinted satin ribbons, arranged for an ethereal shimmer under any light.' },
-        //     { id: 3, name: 'Midnight Bloom', price: '4800 DA', img: 'assets/flower.png', tag: 'New Release', desc: 'A daring deep violet aesthetic, combining avant-garde folding techniques with premium silk textures.' }
-        // ];
-
         let cart = JSON.parse(localStorage.getItem('asmaFlowersCart')) || [];
+        let currentProduct = null;
+        let currentQty = 1;
 
         function renderProducts() {
-            const products = JSON.parse(localStorage.getItem('asmaFlowersProducts')) || initialProducts;
+            const products = JSON.parse(localStorage.getItem('asmaFlowersProducts')) || [];
             const grid = document.getElementById('productsGrid');
             
+            if (products.length === 0) {
+                grid.style.display = 'flex';
+                grid.style.justifyContent = 'center';
+                grid.style.alignItems = 'center';
+                grid.style.minHeight = '400px';
+                grid.innerHTML = `
+                    <div style="text-align: center; opacity: 0.6; padding: 60px;">
+                        <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 20px;">Collection coming soon</h2>
+                        <p>Our artisans are meticulously crafting new eternal blooms. <br> Return soon to discover the silence of silk.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.style.display = 'grid';
             grid.innerHTML = products.map(p => `
                 <div class="product-card">
                     <div class="image-wrapper">
@@ -614,32 +824,68 @@
                     </div>
                     <div class="product-footer">
                         <span class="price">${p.price}</span>
-                        <a href="javascript:void(0)" class="btn-add" onclick="addToCart(${p.id})">Add to Cart</a>
+                        <a href="javascript:void(0)" class="btn-add" onclick="openQtyModal(${p.id})">Add to Cart</a>
                     </div>
                 </div>
             `).join('');
         }
 
-        function addToCart(productId) {
-            const products = JSON.parse(localStorage.getItem('asmaFlowersProducts')) || initialProducts;
-            const product = products.find(p => p.id === productId);
+        window.openQtyModal = function(productId) {
+            const products = JSON.parse(localStorage.getItem('asmaFlowersProducts')) || [];
+            currentProduct = products.find(p => p.id === productId);
             
-            if (product) {
-                cart.push(product);
-                localStorage.setItem('asmaFlowersCart', JSON.stringify(cart));
-                updateCartUI();
-                
-                // Optional: visual feedback
-                const btn = event.target;
-                const originalText = btn.innerText;
-                btn.innerText = 'Added!';
-                btn.style.background = '#7d8c7d';
-                setTimeout(() => {
-                    btn.innerText = originalText;
-                    btn.style.background = '';
-                }, 1000);
+            if (currentProduct) {
+                currentQty = 1;
+                document.getElementById('qtyProdImg').src = currentProduct.img;
+                document.getElementById('qtyProdName').innerText = currentProduct.name;
+                document.getElementById('qtyProdTag').innerText = currentProduct.tag || 'Boutique';
+                document.getElementById('qtyProdDesc').innerText = currentProduct.desc;
+                updateQtyDisplay();
+                document.getElementById('qtyModal').classList.add('active');
             }
+        };
+
+        function updateQtyDisplay() {
+            const price = parseFloat(currentProduct.price.replace(' DA', '').replace('$', ''));
+            const total = price * currentQty;
+            document.getElementById('qtyValue').innerText = currentQty;
+            document.getElementById('qtyTotal').innerText = `${total.toLocaleString()} DA`;
         }
+
+        document.getElementById('qtyPlus').addEventListener('click', () => {
+            currentQty++;
+            updateQtyDisplay();
+        });
+
+        document.getElementById('qtyMinus').addEventListener('click', () => {
+            if (currentQty > 1) {
+                currentQty--;
+                updateQtyDisplay();
+            }
+        });
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMsg');
+            toastMsg.innerText = msg;
+            toast.classList.add('active');
+            setTimeout(() => toast.classList.remove('active'), 2500);
+        }
+
+        document.getElementById('confirmAddBtn').addEventListener('click', () => {
+            // ONLY store ID and Quantity to save space (images are huge)
+            const cartItem = { id: currentProduct.id, quantity: currentQty };
+            cart.push(cartItem);
+            localStorage.setItem('asmaFlowersCart', JSON.stringify(cart));
+            updateCartUI();
+            document.getElementById('qtyModal').classList.remove('active');
+            
+            // Visual feedback
+            showToast(`${currentProduct.name} added to cart`);
+            const cartBtn = document.getElementById('cartBtn');
+            cartBtn.style.transform = 'scale(1.2)';
+            setTimeout(() => cartBtn.style.transform = 'scale(1)', 300);
+        });
 
         function removeFromCart(index) {
             cart.splice(index, 1);
@@ -648,22 +894,28 @@
         }
 
         function updateCartUI() {
+            const products = JSON.parse(localStorage.getItem('asmaFlowersProducts')) || [];
             const cartItems = document.getElementById('cartItems');
-            const cartCount = document.getElementById('cartCount');
+            const cartCountEls = document.querySelectorAll('#cartCount');
             const cartTotalText = document.getElementById('cartTotalText');
             
-            cartCount.innerText = cart.length;
+            let totalItems = cart.reduce((acc, item) => acc + (item.quantity || 1), 0);
+            cartCountEls.forEach(el => el.innerText = totalItems);
             
             let total = 0;
-            cartItems.innerHTML = cart.map((item, index) => {
-                const priceValue = parseFloat(item.price.replace(' DA', '').replace('$', ''));
-                total += priceValue;
+            cartItems.innerHTML = cart.map((cartRecord, index) => {
+                const product = products.find(p => p.id === cartRecord.id);
+                if (!product) return '';
+
+                const priceValue = parseFloat(product.price.replace(' DA', '').replace('$', ''));
+                const qty = cartRecord.quantity || 1;
+                total += (priceValue * qty);
                 return `
                     <div class="cart-item">
-                        <img src="${item.img}" alt="${item.name}">
+                        <img src="${product.img}" alt="${product.name}">
                         <div class="cart-item-info">
-                            <h4>${item.name}</h4>
-                            <p>${item.price}</p>
+                            <h4>${product.name}</h4>
+                            <p>${product.price} x ${qty}</p>
                         </div>
                         <button class="cart-item-remove" onclick="removeFromCart(${index})">Remove</button>
                     </div>
@@ -671,17 +923,18 @@
             }).join('');
 
             if (cart.length === 0) {
-                cartItems.innerHTML = '<p style="text-align:center; opacity:0.5; padding: 40px 0;">Your bag is empty.</p>';
+                cartItems.innerHTML = '<p style="text-align:center; opacity:0.5; padding: 40px 0;">Your cart is empty.</p>';
             }
 
             cartTotalText.innerText = `${total.toLocaleString()} DA`;
         }
 
-        // Modal Logic
         const modal = document.getElementById('cartModal');
         const checkoutModal = document.getElementById('checkoutModal');
+        const qtyModal = document.getElementById('qtyModal');
         const cartBtn = document.getElementById('cartBtn');
         const closeCart = document.getElementById('closeCart');
+        const closeQty = document.getElementById('closeQty');
         const checkoutBtn = document.getElementById('checkoutBtn');
         const backToCart = document.getElementById('backToCart');
         const orderForm = document.getElementById('orderForm');
@@ -692,10 +945,11 @@
         });
 
         closeCart.addEventListener('click', () => modal.classList.remove('active'));
+        closeQty.addEventListener('click', () => qtyModal.classList.remove('active'));
         
         checkoutBtn.addEventListener('click', () => {
             if (cart.length === 0) {
-                alert('Your bag is empty.');
+                alert('Your cart is empty.');
                 return;
             }
             modal.classList.remove('active');
@@ -717,10 +971,17 @@
             const addr = document.getElementById('custAddr').value;
 
             // Format Order Message
+            const products = JSON.parse(localStorage.getItem('asmaFlowersProducts')) || [];
             let total = 0;
-            let itemsText = cart.map(item => {
-                total += parseFloat(item.price.replace(' DA', '').replace('$', ''));
-                return `- ${item.name} (${item.price})`;
+            let itemsText = cart.map(cartRecord => {
+                const product = products.find(p => p.id === cartRecord.id);
+                if (!product) return '';
+                
+                const priceValue = parseFloat(product.price.replace(' DA', '').replace('$', ''));
+                const qty = cartRecord.quantity || 1;
+                const lineTotal = priceValue * qty;
+                total += lineTotal;
+                return `- ${product.name} | ${product.price} x ${qty} = ${lineTotal.toLocaleString()} DA`;
             }).join('%0A');
 
             const message = `*NEW ORDER FROM ASMA FLOWERS*%0A%0A` +
@@ -738,13 +999,25 @@
             // Open WhatsApp
             window.open(whatsappUrl, '_blank');
             
-            // Clear cart and close
+            // Show Success Screen
+            document.getElementById('orderFormContainer').style.display = 'none';
+            document.getElementById('orderSuccess').style.display = 'block';
+
+            // Clear cart
             cart = [];
             localStorage.setItem('asmaFlowersCart', JSON.stringify(cart));
             updateCartUI();
-            checkoutModal.classList.remove('active');
-            orderForm.reset();
         });
+
+        window.closeSuccessModal = function() {
+            checkoutModal.classList.remove('active');
+            // Reset modal for next time
+            setTimeout(() => {
+                document.getElementById('orderFormContainer').style.display = 'block';
+                document.getElementById('orderSuccess').style.display = 'none';
+                orderForm.reset();
+            }, 500);
+        };
 
         modal.addEventListener('click', (e) => {
             if (e.target === modal) modal.classList.remove('active');
@@ -752,6 +1025,10 @@
 
         checkoutModal.addEventListener('click', (e) => {
             if (e.target === checkoutModal) checkoutModal.classList.remove('active');
+        });
+
+        qtyModal.addEventListener('click', (e) => {
+            if (e.target === qtyModal) qtyModal.classList.remove('active');
         });
 
         document.addEventListener('DOMContentLoaded', () => {
