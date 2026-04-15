@@ -7,18 +7,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeBtn = document.getElementById('closeModal');
     
     // Subtle Cursor Parallax
-    document.addEventListener('mousemove', (e) => {
-        const x = (window.innerWidth / 2 - e.pageX) / 80;
-        const y = (window.innerHeight / 2 - e.pageY) / 80;
-        
-        if (!modal.classList.contains('active')) {
-            card.style.transform = `perspective(1000px) rotateY(${x}deg) rotateX(${y}deg)`;
-            flower.style.transform = `translate(${-x * 2}px, ${-y * 2}px)`;
-        } else {
-            // Parallax for the Modal Card
-            modalCard.style.transform = `perspective(1000px) rotateY(${x}deg) rotateX(${y}deg) translateZ(50px)`;
-        }
-    });
+    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        document.addEventListener('mousemove', (e) => {
+            const x = (window.innerWidth / 2 - e.pageX) / 80;
+            const y = (window.innerHeight / 2 - e.pageY) / 80;
+            
+            if (!modal.classList.contains('active')) {
+                card.style.transform = `perspective(1000px) rotateY(${x}deg) rotateX(${y}deg)`;
+                flower.style.transform = `translate(${-x * 2}px, ${-y * 2}px)`;
+            } else {
+                // Parallax for the Modal Card
+                modalCard.style.transform = `perspective(1000px) rotateY(${x}deg) rotateX(${y}deg) translateZ(50px)`;
+            }
+        });
+    }
 
     // Modal Controls
     openBtn.addEventListener('click', (e) => {

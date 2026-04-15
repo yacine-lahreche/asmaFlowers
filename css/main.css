@@ -535,8 +535,68 @@ h1 span.italic {
     opacity: 1;
 }
 
-@media (max-width: 768px) {
-    .modal-card { padding: 40px; border-radius: 40px; }
-    .social-grid { grid-template-columns: 1fr; }
     .social-item { padding: 30px; }
+}
+
+/* Enhanced Responsive Overrides */
+@media (max-width: 1024px) {
+    .glass-card, .modal-card {
+        padding: 40px !important;
+    }
+    
+    h1 {
+        font-size: 4rem !important; /* ~20% reduction from 5rem */
+    }
+
+    .collections-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 20px;
+        overflow-y: auto;
+    }
+
+    .glass-card, .modal-card {
+        padding: 20px !important;
+        border-radius: 30px !important;
+        height: auto;
+        min-height: auto;
+    }
+
+    h1 {
+        font-size: 3rem !important; /* ~40% reduction from 5rem */
+    }
+
+    .collections-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .visuals {
+        display: none; /* Hide floating flowers on mobile to avoid overcrowding */
+    }
+
+    .actions {
+        flex-direction: column;
+        width: 100%;
+        gap: 20px;
+    }
+
+    .btn-shop {
+        width: 100%;
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .season-badge {
+        position: relative;
+        left: 0;
+        top: 0;
+        transform: none !important;
+        margin-bottom: 30px;
+    }
 }

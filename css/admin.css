@@ -290,3 +290,64 @@ input:focus, textarea:focus {
 .btn-back:hover::before {
     transform: translateX(-8px);
 }
+
+/* Responsive Overrides */
+@media (max-width: 1024px) {
+    .glass-card, .auth-card {
+        padding: 40px !important;
+    }
+    
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    .admin-form {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 20px;
+    }
+
+    .header {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .glass-card, .auth-card {
+        padding: 20px !important;
+        border-radius: 30px !important;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    .admin-form {
+        grid-template-columns: 1fr;
+    }
+
+    .btn-add {
+        grid-column: span 1;
+        min-height: 48px;
+        width: 100%;
+    }
+
+    .btn-confirm-mini {
+        min-height: 48px;
+        width: 100%;
+    }
+
+    .inventory-list {
+        display: block;
+        overflow-x: auto;
+    }
+
+    input, textarea {
+        width: 100%;
+        min-height: 48px;
+    }
+}

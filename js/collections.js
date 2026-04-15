@@ -1,7 +1,7 @@
 const SUPABASE_URL = 'https://acsjkmknrzohrojwmjmi.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFjc2prbWtucnpvaHJvandtam1pIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYxNzkyOTUsImV4cCI6MjA5MTc1NTI5NX0.1jxe8mk4lb4snMpXuDFLQyWull56YriUBdlKk1KslFw';
 
-let cart = JSON.parse(localStorage.getItem('asmaFlowersCart')) || [];
+let cart = [];
 let currentProduct = null;
 let currentQty = 1;
 let allProducts = [];
@@ -103,7 +103,7 @@ function showToast(msg) {
 document.getElementById('confirmAddBtn').addEventListener('click', () => {
     const cartItem = { id: currentProduct.id, quantity: currentQty };
     cart.push(cartItem);
-    localStorage.setItem('asmaFlowersCart', JSON.stringify(cart));
+    // localStorage.setItem('asmaFlowersCart', JSON.stringify(cart));
     updateCartUI();
     document.getElementById('qtyModal').classList.remove('active');
     
@@ -115,7 +115,7 @@ document.getElementById('confirmAddBtn').addEventListener('click', () => {
 
 function removeFromCart(index) {
     cart.splice(index, 1);
-    localStorage.setItem('asmaFlowersCart', JSON.stringify(cart));
+    // localStorage.setItem('asmaFlowersCart', JSON.stringify(cart));
     updateCartUI();
 }
 
@@ -225,7 +225,7 @@ orderForm.addEventListener('submit', (e) => {
     document.getElementById('orderSuccess').style.display = 'block';
 
     cart = [];
-    localStorage.setItem('asmaFlowersCart', JSON.stringify(cart));
+    // localStorage.setItem('asmaFlowersCart', JSON.stringify(cart));
     updateCartUI();
 });
 
@@ -257,6 +257,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 window.addEventListener('storage', async () => {
     await renderProducts();
-    cart = JSON.parse(localStorage.getItem('asmaFlowersCart')) || [];
-    updateCartUI();
+    // cart = JSON.parse(localStorage.getItem('asmaFlowersCart')) || [];
+    // updateCartUI();
 });
