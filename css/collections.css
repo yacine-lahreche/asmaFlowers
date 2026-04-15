@@ -561,14 +561,15 @@ body {
     margin: 20px 0;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
 }
 
 .cart-item {
     display: flex;
     align-items: center;
     gap: 20px;
-    padding-bottom: 20px;
+    background: var(--glass-white);
+    border-radius: 15px; 
     border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
