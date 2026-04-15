@@ -1,65 +1,76 @@
-// Interactive functionality for Asma Flowers
-
 document.addEventListener('DOMContentLoaded', () => {
-    const navbar = document.getElementById('navbar');
-    const scrollThreshold = 50;
-
-    // Sticky Navbar
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > scrollThreshold) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-    });
-
-    // Intersection Observer for Reveal Animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('revealed');
-                revealObserver.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    // Apply reveal to sections and cards
-    const animatableElements = document.querySelectorAll('.product-card, .feature-item, .section-title');
+    const card = document.querySelector('.glass-card');
+    const flower = document.querySelector('.main-flower');
+    const modal = document.getElementById('contactModal');
+    const modalCard = document.querySelector('.modal-card');
+    const openBtn = document.getElementById('contactBtn');
+    const closeBtn = document.getElementById('closeModal');
     
-    // Initial styles for animations (adding via JS to ensure they only run if JS is enabled)
-    animatableElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-        revealObserver.observe(el);
+    // Subtle Cursor Parallax
+    document.addEventListener('mousemove', (e) => {
+        const x = (window.innerWidth / 2 - e.pageX) / 80;
+        const y = (window.innerHeight / 2 - e.pageY) / 80;
+        
+        if (!modal.classList.contains('active')) {
+            card.style.transform = `perspective(1000px) rotateY(${x}deg) rotateX(${y}deg)`;
+            flower.style.transform = `translate(${-x * 2}px, ${-y * 2}px)`;
+        } else {
+            // Parallax for the Modal Card
+            modalCard.style.transform = `perspective(1000px) rotateY(${x}deg) rotateX(${y}deg) translateZ(50px)`;
+        }
     });
 
-    // Custom CSS for revealed state
-    const style = document.createElement('style');
-    style.innerHTML = `
-        .revealed {
-            opacity: 1 !important;
-            transform: translateY(0) !important;
-        }
-    `;
-    document.head.appendChild(style);
+    // Modal Controls
+    openBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        // Update Social Links from LocalStorage
+        const socials = JSON.parse(localStorage.getItem('asmaFlowersSocials')) || {
+            instagram: '#', facebook: '#', tiktok: '#', whatsapp: '213696004501'
+        };
 
-    // Smooth Scrolling for nav links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                window.scrollTo({
-                    top: target.offsetTop - 80,
-                    behavior: 'smooth'
-                });
-            }
-        });
+        const igLink = document.getElementById('link-instagram');
+        const fbLink = document.getElementById('link-facebook');
+        const ttLink = document.getElementById('link-tiktok');
+        const waLink = document.getElementById('link-whatsapp');
+
+        if (igLink) igLink.href = socials.instagram === 'Not set' ? '#' : socials.instagram;
+        if (fbLink) fbLink.href = socials.facebook === 'Not set' ? '#' : socials.facebook;
+        if (ttLink) ttLink.href = socials.tiktok === 'Not set' ? '#' : socials.tiktok;
+        if (waLink) waLink.href = socials.whatsapp === 'Not set' ? '#' : `https://wa.me/${socials.whatsapp}`;
+
+        modal.classList.add('active');
+    });
+
+    closeBtn.addEventListener('click', () => {
+        modal.classList.remove('active');
+    });
+
+    // Close on overlay click
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.classList.remove('active');
+    });
+
+    // Smooth entrance animations
+    const elements = [
+        document.querySelector('.brand-name'),
+        document.querySelector('.tagline'),
+        document.querySelector('h1'),
+        document.querySelector('.description'),
+        document.querySelector('.actions'),
+        document.querySelector('.season-badge')
+    ];
+
+    elements.forEach((el, index) => {
+        if (el) {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = `all 0.8s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.1}s`;
+            
+            setTimeout(() => {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            }, 100);
+        }
     });
 });
