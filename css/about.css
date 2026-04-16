@@ -124,7 +124,7 @@ h1 {
 }
 
 .story-text {
-    color: var(--text-muted);
+    color: var(--text-main);
     font-size: 1.1rem;
     line-height: 1.8;
     margin-bottom: 40px;
