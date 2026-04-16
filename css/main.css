@@ -566,8 +566,12 @@ h1 span.italic {
 @media (max-width: 425px) {
     body {
         display: block;
+        align-items: unset;
+        justify-content: unset;
+    }
+    .glass-card {
         min-height: unset;
-        padding: 20px;
+        height: auto;
     }
     h1 { font-size: 2.2rem; }
     .glass-card { padding: 30px 20px; }
