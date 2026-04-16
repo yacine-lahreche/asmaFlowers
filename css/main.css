@@ -32,12 +32,13 @@ html {
 body {
     font-family: 'Outfit', sans-serif;
     min-height: 100vh;
+    min-height: -webkit-fill-available;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 40px;
     color: var(--text-main);
-    overflow: hidden;
+    overflow: hidden; 
 }
 
 /* Ambient Background Mesh */
