@@ -564,6 +564,11 @@ h1 span.italic {
 
 /* Standard Mobile */
 @media (max-width: 425px) {
+    body {
+        display: block;
+        min-height: unset;
+        padding: 20px;
+    }
     h1 { font-size: 2.2rem; }
     .glass-card { padding: 30px 20px; }
     .brand-name { left: 30px; top: 40px; font-size: 1.5rem; }
