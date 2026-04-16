@@ -159,7 +159,7 @@ body::before {
 .glass-card {
     background: var(--glass-white);
     /* backdrop-filter: blur(5px) saturate(140%); */
-    -webkit-backdrop-filter: blur(5px) saturate(140%);
+    /* -webkit-backdrop-filter: blur(5px) saturate(140%); */
     border-radius: 50px;
     border: 1px solid var(--glass-border);
     padding: 80px 100px;
@@ -189,8 +189,8 @@ body::before {
 /* Header elements modernized */
 .brand-name {
     position: absolute;
-    top: 60px;
-    left: 80px;
+    top: 5%;
+    left: 5%;
     font-family: 'Playfair Display', serif;
     font-weight: 700;
     font-size: 2rem;
@@ -201,8 +201,8 @@ body::before {
 
 .info-icon {
     position: absolute;
-    top: 60px;
-    right: 80px;
+    top: 5%;
+    right: 5%;
     width: fit-content;
     height: 32px;
     display: flex;
@@ -238,6 +238,11 @@ body::before {
 }
 
 .tagline {
+    width: fit-content;
+    border: 1px solid var(--glass-border);
+    padding: 5px 10px;
+    border-radius: 15px;
+    background: var(--glass-white);
     color: var(--secondary-green);
     text-transform: uppercase;
     letter-spacing: 5px;
@@ -268,7 +273,7 @@ h1 span.italic {
     font-size: 1.1rem;
     line-height: 1.7;
     margin-bottom: 60px;
-    width: clamp(200px, 80%, 100%);
+    /* width: clamp(200px, 80%, 100%); */
     font-weight: 300;
 }
 
@@ -353,8 +358,8 @@ h1 span.italic {
 
 .season-badge {
     position: absolute;
-    left: 20px;
-    top: 40%;
+    right: 20px;
+    bottom: 40%;
     background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(10px);
     padding: 24px 36px;
@@ -400,45 +405,7 @@ h1 span.italic {
     z-index: 0;
 }
 
-@media (max-width: 1200px) {
-    .glass-card {
-        padding: 60px;
-        width: 95vw;
-    }
-    h1 { font-size: 4rem; }
-    .visuals { width: 500px; }
-}
-
-@media (max-width: 992px) {
-    body { overflow: auto; padding: 20px; }
-    .glass-card {
-        flex-direction: column;
-        height: auto;
-        min-height: auto;
-        padding: 100px 40px 60px;
-        text-align: center;
-        gap: 50px;
-    }
-    .content {
-        max-width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .visuals {
-        position: relative;
-        right: 0;
-        top: 0;
-        transform: none;
-        width: 100%;
-        height: 400px;
-    }
-    .main-flower { width: 100%; padding: 20px; }
-    .season-badge { left: 50%; transform: translateX(-50%); top: 10%; }
-    .actions { gap: 30px; }
-    h1 { font-size: 3rem; }
-}
-
+/* Modal Styling */
 .modal-overlay {
     position: fixed;
     inset: 0;
@@ -531,72 +498,107 @@ h1 span.italic {
     gap: 10px;
 }
 
-.close-btn:hover {
-    opacity: 1;
+.close-btn:hover { opacity: 1; }
+
+.social-item { padding: 30px; }
+
+/* --- RESPONSIVE OVERHAUL --- */
+
+/* 4K Super Screens */
+@media (min-width: 2560px) {
+    .glass-card { padding: 120px 150px; }
+    h1 { font-size: 7rem; }
+    .description { font-size: 1.5rem; }
+    .btn-shop { padding: 30px 80px; font-size: 1.3rem; }
+    .season-badge { padding: 40px 60px; }
+    .badge-type { font-size: 2.2rem; }
 }
 
-    .social-item { padding: 30px; }
+/* Detailed Laptop */
+@media (max-width: 1440px) {
+    .glass-card { padding: 60px 80px; height: 80vh; }
+    h1 { font-size: 4rem; }
+    .visuals { width: 700px; }
 }
 
-/* Enhanced Responsive Overrides */
+/* Tablet */
 @media (max-width: 1024px) {
-    .glass-card, .modal-card {
-        padding: 40px !important;
+    .glass-card { 
+        padding: 50px; 
+        flex-direction: column; 
+        height: auto; 
+        text-align: center;
+        gap: 40px;
+        min-height: fit-content;
     }
-    
-    h1 {
-        font-size: 4rem !important; /* ~20% reduction from 5rem */
+    .content { 
+        max-width: 100%;
+        padding-top: 0;
+        display: flex;
+        flex-direction: column;
+        margin-top: 5%;
+        justify-content: center;
+        align-items: center;
     }
-
-    .collections-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-    }
+    h1 { font-size: 3.5rem; }
+    .visuals { display: none; }
+    .main-flower { width: 60%; }
+    .collections-grid { grid-template-columns: repeat(2, 1fr); }
+    .season-badge { position: relative; right: 0; bottom: 0; margin-top: 20px; display: inline-block; }
+    .actions { justify-content: center; }
 }
 
+/* Mobile Large (Phablets) */
 @media (max-width: 768px) {
-    body {
-        padding: 20px;
-        overflow-y: auto;
-    }
+    body { overflow-y: auto; padding: 20px; }
+    .glass-card { padding: 40px 30px; border-radius: 40px; }
+    .content { margin-top: 10%; } 
+    .tagline { font-size: 0.6rem; letter-spacing: 3px; } 
+    h1 { font-size: 2.8rem; }
+    .description { font-size: 1rem; width: 100%; }
+    .actions { flex-direction: column; gap: 20px; }
+    .btn-shop { width: 100%; text-align: center; padding: 18px; min-height: 48px; }
+    .collections-grid { grid-template-columns: 1fr; }
+    .modal-card { padding: 40px 20px; } 
+}
 
-    .glass-card, .modal-card {
-        padding: 20px !important;
-        border-radius: 30px !important;
-        height: auto;
-        min-height: auto;
+/* Standard Mobile */
+@media (max-width: 425px) {
+    h1 { font-size: 2.2rem; }
+    .glass-card { padding: 30px 20px; }
+    .brand-name { left: 30px; top: 40px; font-size: 1.5rem; }
+    .info-circle { width: 20px; height: 20px; }
+    .info-icon { right: 30px; top: 40px; }
+    .content { margin-top: 20%; }  
+    .main-flower { width: 80%; }
+    .social-grid {
+        grid-template-columns: repeat(2, minmax(100px, 1fr));
+        gap: 10px;
     }
+    .social-item { padding: 15px; }
+    .social-item span { font-size: 0.6rem; }
+    .close-btn { font-size: 0.8rem; }
+}
 
-    h1 {
-        font-size: 3rem !important; /* ~40% reduction from 5rem */
-    }
+/* Small Mobile */
+@media (max-width: 375px) {
+    .brand-name { left: 25px; top: 25px; font-size: 1.2rem;}
+    .info-icon { top: 25px; right: 25px; }
+    .info-circle { width: 17px; height: 17px; }
+    .content { margin-top: 15%; } 
+    .tagline { font-size: 0.5rem; letter-spacing: 3px; }
+    h1 { font-size: 2rem; }
+    .description { font-size: 0.9rem; } 
+}
 
-    .collections-grid {
-        grid-template-columns: 1fr !important;
-    }
-
-    .visuals {
-        display: none; /* Hide floating flowers on mobile to avoid overcrowding */
-    }
-
-    .actions {
-        flex-direction: column;
-        width: 100%;
-        gap: 20px;
-    }
-
-    .btn-shop {
-        width: 100%;
-        min-height: 48px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .season-badge {
-        position: relative;
-        left: 0;
-        top: 0;
-        transform: none !important;
-        margin-bottom: 30px;
-    }
+/* Tiny Mobile */
+@media (max-width: 320px) {
+    .brand-name { left: 20px; top: 20px; font-size: 1.2rem;}
+    .info-icon { top: 20px; right: 20px; }
+    .info-circle { width: 15px; height: 15px; } 
+    .tagline { font-size: 0.4rem;}
+    h1 { font-size: 1.8rem; }
+    .glass-card { padding: 20px 15px; } 
+    .btn-shop { font-size: 0.7rem; height: 35px; }
+    .link-collections { font-size: 0.7rem; }
 }
