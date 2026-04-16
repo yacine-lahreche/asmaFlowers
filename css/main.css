@@ -166,7 +166,7 @@ body::before {
 /* Refined Glass Card */
 .glass-card {
     background: var(--glass-white);
-    backdrop-filter: blur(5px) saturate(140%);
+    backdrop-filter: blur(5px) saturate(140%);how to set up my website so that the "Asma flowers" logo appears as the preview image when i share the link.
     /* -webkit-backdrop-filter: blur(5px) saturate(140%); */
     border-radius: 50px;
     border: 1px solid var(--glass-border);
